@@ -1,4 +1,5 @@
 port ?= 8000
+m ?= ""
 
 run:
 	python manage.py runserver $(port) # for example, make run port=3939
@@ -14,3 +15,12 @@ user:
 
 shell:
 	python manage.py shell
+
+test:
+	python manage.py test
+
+commit:
+	git add . && git commit -m "$(m)"
+
+push:
+	git add . && git commit -m "$(m)" && git push
