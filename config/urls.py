@@ -17,7 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-urlpatterns = [
-    path("polls/", include("polls.urls")),
-    path('admin/', admin.site.urls),
-]
+from . import settings
+
+if not settings.TESTING:
+    urlpatterns = [
+        path('polls/', include('polls.urls')),
+        path('admin/', admin.site.urls),
+        # 3rd Party
+        path('__debug__/', include('debug_toolbar.urls')),
+    ]
